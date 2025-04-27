@@ -42,6 +42,16 @@
 		CBB447FD2D0C7BC300A86CA5 /* WhatIamToDoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatIamToDoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CB0C502A2DBD399300479DB8 /* Exceptions for "WhatIamToDo" folder in "WhatIamToDo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CBB447DC2D0C7BC100A86CA5 /* WhatIamToDo */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CBB447F62D0C7BC300A86CA5 /* WhatIamToDoTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -55,6 +65,9 @@
 		};
 		CBCA4F002D9D405D004C3745 /* WhatIamToDo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CB0C502A2DBD399300479DB8 /* Exceptions for "WhatIamToDo" folder in "WhatIamToDo" target */,
+			);
 			path = WhatIamToDo;
 			sourceTree = "<group>";
 		};

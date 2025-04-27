@@ -120,8 +120,8 @@ class SettingsViewController: UIViewController {
                             message: "You have already imported your iOS calendar.")
             return
          }
+         
        
-
         // обычный сценарий первого импорта
         let alert = UIAlertController(title: "Import iOS Calendar",
                                       message: "Are you sure you want to import iOS calendar events?",

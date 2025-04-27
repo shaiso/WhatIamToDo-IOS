@@ -1810,9 +1810,9 @@ extension TodoCardCell: UIContextMenuInteractionDelegate {
                         case .success(let message):
                             print("Шаг успешно удалён: \(message)")
                             // После удаления шага вызываем маршрут для обновления информации по цели
-                            getGoalInfo(token: currentUserToken, goalId: step.goal_id) { infoResult in
+                            getGoalDetail(token: currentUserToken, goalId: step.goal_id) { detailResult in
                                 DispatchQueue.main.async {
-                                    switch infoResult {
+                                    switch detailResult {
                                     case .failure(let error):
                                         if "\(error)".contains("Token has expired") {
                                             self.parentViewController()?.showTokenExpiredAlert()
