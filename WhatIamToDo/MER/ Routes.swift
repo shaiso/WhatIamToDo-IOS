@@ -356,57 +356,6 @@ func getGoalsWithSteps(token: String,
     }.resume()
 }
 
-// PATCH (или PUT) /api/goals/<goal_id>
-func updateGoal(token: String,
-                goalId: Int,
-                title: String?,
-                description: String?,
-                color: String?,
-                completion: @escaping (Result<String, Error>) -> Void) {
-    guard let url = URL(string: "\(baseUrl)/api/goals/\(goalId)") else {
-        completion(.failure(NetworkError.invalidURL))
-        return
-    }
-    var request = URLRequest(url: url)
-    request.httpMethod = "PATCH" // или "PUT"
-    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    
-    var body: [String: Any] = [:]
-    if let t = title { body["title"] = t }
-    if let d = description { body["description"] = d }
-    if let c = color { body["color"] = c }
-    
-    do {
-        request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
-    } catch {
-        completion(.failure(error))
-        return
-    }
-    
-    URLSession.shared.dataTask(with: request) { data, response, error in
-        if let error = error { completion(.failure(error)); return }
-        guard let data = data, let httpResponse = response as? HTTPURLResponse else {
-            completion(.failure(NetworkError.noData))
-            return
-        }
-        if !(200...299).contains(httpResponse.statusCode) {
-            if let msg = try? JSONDecoder().decode(SimpleMessageResponse.self, from: data) {
-                completion(.failure(NetworkError.serverError(msg.message)))
-            } else {
-                completion(.failure(NetworkError.serverError("Status \(httpResponse.statusCode)")))
-            }
-            return
-        }
-        do {
-            let parsed = try JSONDecoder().decode(SimpleMessageResponse.self, from: data)
-            completion(.success(parsed.message))
-        } catch {
-            completion(.failure(error))
-        }
-    }.resume()
-}
-
 // DELETE /api/goals/<goal_id>
 func deleteGoal(token: String,
                 goalId: Int,
